@@ -51,59 +51,49 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-azul-oscuro text-white">
-      {/* Main Footer Content */}
+    <footer className="bg-azul-medio text-white">
       <div className="container-custom py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {/* Company Info */}
+        <div className="grid md:grid-cols-4 gap-8">
+          {/* Logo y CTA */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="md:col-span-2 space-y-6"
           >
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center">
-                <span className="text-azul-oscuro font-bold text-xl">NV</span>
+            <div className="flex items-center space-x-4">
+              {/* Logo con árbol */}
+              <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="text-azul-oscuro">
+                  <path d="M12 2L8 8H16L12 2Z" fill="currentColor"/>
+                  <path d="M8 8L6 12H18L16 8H8Z" fill="currentColor"/>
+                  <path d="M6 12L4 16H20L18 12H6Z" fill="currentColor"/>
+                  <path d="M4 16L2 20H22L20 16H4Z" fill="currentColor"/>
+                  <circle cx="12" cy="6" r="2" fill="#e53e3e"/>
+                  <path d="M9 4L12 7L15 4" stroke="currentColor" strokeWidth="2" fill="none"/>
+                </svg>
               </div>
               <div>
-                <h3 className="text-2xl font-bold">NeuroVida</h3>
-                <p className="text-azul-claro text-sm">Centro de Especialidades Médicas</p>
+                <h3 className="text-3xl font-bold">NeuroVida</h3>
+                <p className="text-azul-claro">Centro de Especialidades Médicas</p>
               </div>
             </div>
             
-            <p className="text-gray-300 leading-relaxed">
-              Brindamos atención médica especializada con un equipo de profesionales 
-              altamente capacitados y tecnología de vanguardia.
-            </p>
-
-            {/* Contact Info */}
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <Phone size={18} className="text-azul-claro" />
-                <a href="tel:+541112345678" className="text-sm hover:text-azul-claro transition-colors">
-                  (11) 1234-5678
-                </a>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Mail size={18} className="text-azul-claro" />
-                <a href="mailto:info@neurovida.com.ar" className="text-sm hover:text-azul-claro transition-colors">
-                  info@neurovida.com.ar
-                </a>
-              </div>
-              <div className="flex items-center space-x-3">
-                <MapPin size={18} className="text-azul-claro" />
-                <span className="text-sm">Av. Corrientes 1234, CABA</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Clock size={18} className="text-azul-claro" />
-                <span className="text-sm">Lun-Vie: 8:00-20:00</span>
-              </div>
+            <div className="space-y-4">
+              <h4 className="text-xl font-bold">SOLICITÁ TU TURNO ONLINE</h4>
+              <motion.a
+                href="/turnos"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-block bg-rojo-cta hover:bg-red-700 text-white font-bold px-8 py-4 rounded-lg transition-all duration-300"
+              >
+                HACE CLIC AQUÍ
+              </motion.a>
             </div>
           </motion.div>
 
-          {/* Quick Links */}
+          {/* Información de Contacto */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -111,20 +101,23 @@ const Footer = () => {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <h4 className="text-xl font-bold text-azul-claro">Enlaces Rápidos</h4>
-            <ul className="space-y-3">
-              {quickLinks.map((link, index) => (
-                <li key={index}>
-                  <motion.a
-                    href={link.href}
-                    whileHover={{ x: 5 }}
-                    className="text-gray-300 hover:text-azul-claro transition-colors duration-300 text-sm"
-                  >
-                    {link.name}
-                  </motion.a>
-                </li>
-              ))}
-            </ul>
+            <div className="space-y-4">
+              <div className="flex items-center space-x-3">
+                <Phone size={20} className="text-azul-claro" />
+                <div>
+                  <div className="font-semibold">Tel (011) 2060-7695</div>
+                  <div className="text-sm text-gray-300">recepcion@neurovida.com.ar</div>
+                </div>
+              </div>
+              
+              <div className="flex items-center space-x-3">
+                <MapPin size={20} className="text-azul-claro" />
+                <div>
+                  <div className="font-semibold">Cnel. Ramón L. Falcón 5206</div>
+                  <div className="text-sm text-gray-300">VILLA LURO | CABA | ARGENTINA</div>
+                </div>
+              </div>
+            </div>
           </motion.div>
 
           {/* Redes Sociales */}
@@ -135,52 +128,23 @@ const Footer = () => {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <h4 className="text-xl font-bold text-azul-claro">Síguenos</h4>
-            <p className="text-gray-300 text-sm">
-              Mantente al día con nuestras noticias y consejos de salud
-            </p>
-            <div className="grid grid-cols-2 gap-4">
+            <h4 className="text-xl font-bold">Síguenos</h4>
+            <div className="flex space-x-4">
               {redesSociales.map((red, index) => (
                 <motion.a
                   key={index}
                   href={red.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`w-full h-12 bg-azul-medio rounded-lg flex items-center justify-center space-x-2 text-gray-300 ${red.color} transition-all duration-300 hover:bg-azul-claro`}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-azul-oscuro hover:bg-azul-claro transition-colors duration-300"
                 >
                   {red.icon}
-                  <span className="text-sm font-medium">{red.name}</span>
                 </motion.a>
               ))}
             </div>
           </motion.div>
-        </div>
-      </div>
-
-      {/* Bottom Bar */}
-      <div className="bg-azul-medio py-6">
-        <div className="container-custom">
-          <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-            <div className="text-center md:text-left">
-              <p className="text-gray-300 text-sm">
-                © 2024 NeuroVida. Todos los derechos reservados.
-              </p>
-              <p className="text-gray-400 text-xs mt-1">
-                Centro de Especialidades Médicas
-              </p>
-            </div>
-            
-            <div className="flex items-center space-x-6">
-              <a href="#" className="text-gray-300 hover:text-azul-claro text-sm transition-colors duration-300">
-                Política de Privacidad
-              </a>
-              <a href="#" className="text-gray-300 hover:text-azul-claro text-sm transition-colors duration-300">
-                Términos y Condiciones
-              </a>
-            </div>
-          </div>
         </div>
       </div>
 

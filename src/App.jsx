@@ -2,8 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Header from './components/Header';
 import HeroSection from './sections/HeroSection';
-import PortalTurnosSection from './sections/PortalTurnosSection';
-import ContactoSection from './sections/ContactoSection';
+import ServiciosSection from './sections/ServiciosSection';
+import InfoBlocksSection from './sections/InfoBlocksSection';
+import BlogSection from './sections/BlogSection';
 import Footer from './components/Footer';
 import FloatingButtons from './components/FloatingButtons';
 
@@ -18,11 +19,14 @@ function App() {
         {/* Hero Section */}
         <HeroSection />
         
-        {/* Portal de Turnos Section */}
-        <PortalTurnosSection />
+        {/* Servicios Section */}
+        <ServiciosSection />
         
-        {/* Contacto Section */}
-        <ContactoSection />
+        {/* Bloques de Información */}
+        <InfoBlocksSection />
+        
+        {/* Blog Section */}
+        <BlogSection />
       </main>
       
       {/* Footer */}
