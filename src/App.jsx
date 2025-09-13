@@ -2,12 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Header from './components/Header';
 import HeroSection from './sections/HeroSection';
-import EspecialidadesSection from './sections/EspecialidadesSection';
-import MedicosSection from './sections/MedicosSection';
-import ServiciosSection from './sections/ServiciosSection';
-import TestimoniosSection from './sections/TestimoniosSection';
+import PortalTurnosSection from './sections/PortalTurnosSection';
 import ContactoSection from './sections/ContactoSection';
 import Footer from './components/Footer';
+import FloatingButtons from './components/FloatingButtons';
 
 function App() {
   return (
@@ -20,17 +18,8 @@ function App() {
         {/* Hero Section */}
         <HeroSection />
         
-        {/* Especialidades Section */}
-        <EspecialidadesSection />
-        
-        {/* Médicos Section */}
-        <MedicosSection />
-        
-        {/* Servicios Section */}
-        <ServiciosSection />
-        
-        {/* Testimonios Section */}
-        <TestimoniosSection />
+        {/* Portal de Turnos Section */}
+        <PortalTurnosSection />
         
         {/* Contacto Section */}
         <ContactoSection />
@@ -38,6 +27,9 @@ function App() {
       
       {/* Footer */}
       <Footer />
+      
+      {/* Floating Buttons */}
+      <FloatingButtons />
     </div>
   );
 }

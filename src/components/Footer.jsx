@@ -8,7 +8,7 @@ import {
   Facebook, 
   Instagram, 
   MessageCircle,
-  Heart,
+  Linkedin,
   ArrowUp
 } from 'lucide-react';
 
@@ -19,58 +19,42 @@ const Footer = () => {
 
   const quickLinks = [
     { name: 'Inicio', href: '#inicio' },
-    { name: 'Especialidades', href: '#especialidades' },
-    { name: 'Médicos', href: '#medicos' },
-    { name: 'Servicios', href: '#servicios' },
+    { name: 'Turnos Online', href: '#turnos' },
     { name: 'Contacto', href: '#contacto' }
-  ];
-
-  const especialidades = [
-    'Cardiología',
-    'Neurología',
-    'Pediatría',
-    'Ortopedia',
-    'Ginecología',
-    'Oftalmología',
-    'Medicina Interna',
-    'Endocrinología'
-  ];
-
-  const servicios = [
-    'Consultas Médicas',
-    'Laboratorio Clínico',
-    'Exámenes de Diagnóstico',
-    'Urgencias 24/7',
-    'Cirugía Ambulatoria',
-    'Medicina Preventiva'
   ];
 
   const redesSociales = [
     {
-      icon: <Facebook size={20} />,
-      name: 'Facebook',
-      href: '#',
-      color: 'hover:text-blue-600'
-    },
-    {
-      icon: <Instagram size={20} />,
+      icon: <Instagram size={24} />,
       name: 'Instagram',
-      href: '#',
-      color: 'hover:text-pink-600'
+      href: 'https://instagram.com/neurovida',
+      color: 'hover:text-pink-500'
     },
     {
-      icon: <MessageCircle size={20} />,
+      icon: <Facebook size={24} />,
+      name: 'Facebook',
+      href: 'https://facebook.com/neurovida',
+      color: 'hover:text-blue-500'
+    },
+    {
+      icon: <MessageCircle size={24} />,
       name: 'WhatsApp',
-      href: '#',
-      color: 'hover:text-green-600'
+      href: 'https://wa.me/541112345678',
+      color: 'hover:text-green-500'
+    },
+    {
+      icon: <Linkedin size={24} />,
+      name: 'LinkedIn',
+      href: 'https://linkedin.com/company/neurovida',
+      color: 'hover:text-blue-600'
     }
   ];
 
   return (
     <footer className="bg-azul-oscuro text-white">
       {/* Main Footer Content */}
-      <div className="container-custom section-padding">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="container-custom py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Company Info */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -80,33 +64,37 @@ const Footer = () => {
             className="space-y-6"
           >
             <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-verde rounded-lg flex items-center justify-center">
-                <Heart size={24} />
+              <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center">
+                <span className="text-azul-oscuro font-bold text-xl">NV</span>
               </div>
               <div>
-                <h3 className="text-2xl font-bold">Centro Médico</h3>
-                <p className="text-azul-claro text-sm">Tu salud, nuestra prioridad</p>
+                <h3 className="text-2xl font-bold">NeuroVida</h3>
+                <p className="text-azul-claro text-sm">Centro de Especialidades Médicas</p>
               </div>
             </div>
             
             <p className="text-gray-300 leading-relaxed">
-              Más de 15 años brindando atención médica de calidad con un equipo 
-              de profesionales altamente capacitados y tecnología de vanguardia.
+              Brindamos atención médica especializada con un equipo de profesionales 
+              altamente capacitados y tecnología de vanguardia.
             </p>
 
             {/* Contact Info */}
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone size={18} className="text-azul-claro" />
-                <span className="text-sm">(123) 456-7890</span>
+                <a href="tel:+541112345678" className="text-sm hover:text-azul-claro transition-colors">
+                  (11) 1234-5678
+                </a>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail size={18} className="text-azul-claro" />
-                <span className="text-sm">info@centromedico.com</span>
+                <a href="mailto:info@neurovida.com.ar" className="text-sm hover:text-azul-claro transition-colors">
+                  info@neurovida.com.ar
+                </a>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin size={18} className="text-azul-claro" />
-                <span className="text-sm">Av. Principal 123, Centro</span>
+                <span className="text-sm">Av. Corrientes 1234, CABA</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Clock size={18} className="text-azul-claro" />
@@ -139,7 +127,7 @@ const Footer = () => {
             </ul>
           </motion.div>
 
-          {/* Especialidades */}
+          {/* Redes Sociales */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -147,88 +135,29 @@ const Footer = () => {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <h4 className="text-xl font-bold text-azul-claro">Especialidades</h4>
-            <ul className="space-y-2">
-              {especialidades.map((especialidad, index) => (
-                <li key={index}>
-                  <span className="text-gray-300 text-sm">{especialidad}</span>
-                </li>
+            <h4 className="text-xl font-bold text-azul-claro">Síguenos</h4>
+            <p className="text-gray-300 text-sm">
+              Mantente al día con nuestras noticias y consejos de salud
+            </p>
+            <div className="grid grid-cols-2 gap-4">
+              {redesSociales.map((red, index) => (
+                <motion.a
+                  key={index}
+                  href={red.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`w-full h-12 bg-azul-medio rounded-lg flex items-center justify-center space-x-2 text-gray-300 ${red.color} transition-all duration-300 hover:bg-azul-claro`}
+                >
+                  {red.icon}
+                  <span className="text-sm font-medium">{red.name}</span>
+                </motion.a>
               ))}
-            </ul>
-          </motion.div>
-
-          {/* Servicios y Redes Sociales */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="space-y-6"
-          >
-            <h4 className="text-xl font-bold text-azul-claro">Servicios</h4>
-            <ul className="space-y-2 mb-6">
-              {servicios.map((servicio, index) => (
-                <li key={index}>
-                  <span className="text-gray-300 text-sm">{servicio}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div>
-              <h4 className="text-xl font-bold text-azul-claro mb-4">Síguenos</h4>
-              <div className="flex space-x-4">
-                {redesSociales.map((red, index) => (
-                  <motion.a
-                    key={index}
-                    href={red.href}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    className={`w-10 h-10 bg-azul-medio rounded-full flex items-center justify-center text-gray-300 ${red.color} transition-colors duration-300`}
-                    title={red.name}
-                  >
-                    {red.icon}
-                  </motion.a>
-                ))}
-              </div>
             </div>
           </motion.div>
         </div>
       </div>
-
-      {/* Emergency Contact Bar */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="bg-red-600 py-4"
-      >
-        <div className="container-custom">
-          <div className="flex flex-col md:flex-row items-center justify-between text-center md:text-left">
-            <div className="flex items-center space-x-4 mb-2 md:mb-0">
-              <Phone size={24} />
-              <div>
-                <p className="font-bold text-lg">Emergencias 24/7</p>
-                <p className="text-sm">Línea directa para emergencias médicas</p>
-              </div>
-            </div>
-            <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
-              <a 
-                href="tel:911" 
-                className="bg-white text-red-600 font-bold px-6 py-2 rounded-lg hover:bg-red-50 transition-colors duration-300"
-              >
-                Llamar 911
-              </a>
-              <a 
-                href="tel:+1234567890" 
-                className="border-2 border-white text-white font-bold px-6 py-2 rounded-lg hover:bg-white hover:text-red-600 transition-all duration-300"
-              >
-                Centro Médico
-              </a>
-            </div>
-          </div>
-        </div>
-      </motion.div>
 
       {/* Bottom Bar */}
       <div className="bg-azul-medio py-6">
@@ -236,10 +165,10 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
             <div className="text-center md:text-left">
               <p className="text-gray-300 text-sm">
-                © 2024 Centro Médico. Todos los derechos reservados.
+                © 2024 NeuroVida. Todos los derechos reservados.
               </p>
               <p className="text-gray-400 text-xs mt-1">
-                Diseñado con ❤️ para tu salud y bienestar
+                Centro de Especialidades Médicas
               </p>
             </div>
             

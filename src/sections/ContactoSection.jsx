@@ -69,26 +69,30 @@ const ContactoSection = () => {
     {
       icon: <Phone size={24} />,
       title: 'Teléfono',
-      info: '(123) 456-7890',
-      subtitle: 'Línea directa 24/7'
+      info: '(11) 1234-5678',
+      subtitle: 'Línea directa 24/7',
+      href: 'tel:+541112345678'
     },
     {
       icon: <Mail size={24} />,
       title: 'Email',
-      info: 'info@centromedico.com',
-      subtitle: 'Respuesta en 24 horas'
+      info: 'info@neurovida.com.ar',
+      subtitle: 'Respuesta en 24 horas',
+      href: 'mailto:info@neurovida.com.ar'
     },
     {
       icon: <MapPin size={24} />,
       title: 'Dirección',
-      info: 'Av. Principal 123, Centro',
-      subtitle: 'Ciudad, País 12345'
+      info: 'Av. Corrientes 1234, CABA',
+      subtitle: 'Buenos Aires, Argentina',
+      href: '#ubicacion'
     },
     {
       icon: <Clock size={24} />,
       title: 'Horarios',
       info: 'Lun - Vie: 8:00 - 20:00',
-      subtitle: 'Sáb: 8:00 - 14:00'
+      subtitle: 'Sáb: 8:00 - 14:00',
+      href: null
     }
   ];
 
@@ -139,19 +143,52 @@ const ContactoSection = () => {
                   whileHover={{ scale: 1.02 }}
                   className="bg-white rounded-xl shadow-lg p-6 border border-gray-100"
                 >
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-azul-claro/10 rounded-full flex items-center justify-center text-azul-oscuro">
-                      {item.icon}
+                  {item.href ? (
+                    <a href={item.href} className="flex items-start space-x-4 hover:opacity-80 transition-opacity">
+                      <div className="w-12 h-12 bg-azul-claro/10 rounded-full flex items-center justify-center text-azul-oscuro">
+                        {item.icon}
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-azul-oscuro text-lg">{item.title}</h4>
+                        <p className="text-verde font-semibold">{item.info}</p>
+                        <p className="text-gray-600 text-sm">{item.subtitle}</p>
+                      </div>
+                    </a>
+                  ) : (
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-azul-claro/10 rounded-full flex items-center justify-center text-azul-oscuro">
+                        {item.icon}
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-azul-oscuro text-lg">{item.title}</h4>
+                        <p className="text-verde font-semibold">{item.info}</p>
+                        <p className="text-gray-600 text-sm">{item.subtitle}</p>
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="font-bold text-azul-oscuro text-lg">{item.title}</h4>
-                      <p className="text-verde font-semibold">{item.info}</p>
-                      <p className="text-gray-600 text-sm">{item.subtitle}</p>
-                    </div>
-                  </div>
+                  )}
                 </motion.div>
               ))}
             </div>
+
+            {/* CTA Button */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-gradient-to-r from-rojo-cta to-red-600 rounded-xl p-6 text-center"
+            >
+              <Calendar className="w-12 h-12 text-white mx-auto mb-4" />
+              <h4 className="font-bold text-white text-xl mb-2">Solicitá tu turno online</h4>
+              <p className="text-white/90 mb-4">
+                Reservá tu cita de forma rápida y sencilla
+              </p>
+              <a
+                href="/turnos"
+                className="inline-flex items-center space-x-2 bg-white text-rojo-cta font-bold px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors duration-300"
+              >
+                <Calendar size={20} />
+                <span>Reservar Turno</span>
+              </a>
+            </motion.div>
 
             {/* Emergency Contact */}
             <motion.div

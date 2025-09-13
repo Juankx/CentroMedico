@@ -7,10 +7,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        'azul-claro': '#53afd7',
         'azul-oscuro': '#184360',
-        'verde': '#3cab3d',
         'azul-medio': '#255d87',
+        'rojo-cta': '#c62828',
+        'verde': '#3cab3d',
+        'azul-claro': '#53afd7',
       },
       fontFamily: {
         'inter': ['Inter', 'sans-serif'],

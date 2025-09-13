@@ -17,9 +17,7 @@ const Header = () => {
 
   const menuItems = [
     { name: 'Inicio', href: '#inicio' },
-    { name: 'Especialidades', href: '#especialidades' },
-    { name: 'Médicos', href: '#medicos' },
-    { name: 'Servicios', href: '#servicios' },
+    { name: 'Turnos Online', href: '#turnos' },
     { name: 'Contacto', href: '#contacto' },
   ];
 
@@ -39,14 +37,15 @@ const Header = () => {
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="flex items-center space-x-2"
+            className="flex items-center space-x-3"
           >
-            <div className="w-10 h-10 bg-verde rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">CM</span>
+            <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center">
+              <span className="text-azul-oscuro font-bold text-xl">NV</span>
             </div>
-            <span className="text-white font-bold text-xl lg:text-2xl">
-              Centro Médico
-            </span>
+            <div className="text-white">
+              <h1 className="font-bold text-xl lg:text-2xl">NeuroVida</h1>
+              <p className="text-sm text-gray-200">Centro de Especialidades Médicas</p>
+            </div>
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -67,22 +66,23 @@ const Header = () => {
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center space-x-4">
             <motion.a
-              href="tel:+1234567890"
+              href="tel:+54123456789"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="flex items-center space-x-2 text-white hover:text-azul-claro transition-colors duration-300"
             >
               <Phone size={20} />
-              <span className="font-medium">(123) 456-7890</span>
+              <span className="font-medium">(11) 1234-5678</span>
             </motion.a>
-            <motion.button
+            <motion.a
+              href="/turnos"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="btn-primary flex items-center space-x-2"
+              className="bg-rojo-cta hover:bg-red-700 text-white font-semibold py-2 px-6 rounded-lg transition-all duration-300 flex items-center space-x-2"
             >
               <Calendar size={20} />
-              <span>Agendar Cita</span>
-            </motion.button>
+              <span>Turnos Online</span>
+            </motion.a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -119,21 +119,22 @@ const Header = () => {
             ))}
             <div className="pt-4 space-y-3">
               <motion.a
-                href="tel:+1234567890"
+                href="tel:+54123456789"
                 whileHover={{ scale: 1.05 }}
                 className="flex items-center space-x-2 text-white hover:text-azul-claro transition-colors duration-300 py-2"
               >
                 <Phone size={20} />
-                <span className="font-medium">(123) 456-7890</span>
+                <span className="font-medium">(11) 1234-5678</span>
               </motion.a>
-              <motion.button
+              <motion.a
+                href="/turnos"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-primary w-full flex items-center justify-center space-x-2"
+                className="bg-rojo-cta hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 w-full flex items-center justify-center space-x-2"
               >
                 <Calendar size={20} />
-                <span>Agendar Cita</span>
-              </motion.button>
+                <span>Turnos Online</span>
+              </motion.a>
             </div>
           </div>
         </motion.div>
