@@ -36,25 +36,20 @@ const Header = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-azul-oscuro shadow-lg' 
-          : 'bg-azul-oscuro/95 backdrop-blur-sm'
-      }`}
+      className="fixed w-full z-50"
     >
-
-      {/* Navegación Principal */}
-      <div className="bg-azul-oscuro py-4">
+      {/* Barra Superior - Título y Redes Sociales */}
+      <div className="bg-azul-oscuro/80 backdrop-blur-sm py-3">
         <div className="container-custom">
           <div className="flex items-center justify-between">
-            {/* Logo */}
+            {/* Logo y Título */}
             <motion.div
               whileHover={{ scale: 1.05 }}
               className="flex items-center space-x-3"
             >
               {/* Logo con árbol */}
-              <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-azul-oscuro">
+              <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-azul-oscuro">
                   <path d="M12 2L8 8H16L12 2Z" fill="currentColor"/>
                   <path d="M8 8L6 12H18L16 8H8Z" fill="currentColor"/>
                   <path d="M6 12L4 16H20L18 12H6Z" fill="currentColor"/>
@@ -63,13 +58,37 @@ const Header = () => {
                 </svg>
               </div>
               <div className="text-white">
-                <h1 className="font-bold text-xl lg:text-2xl">NeuroVida</h1>
-                <p className="text-sm text-gray-200">Centro de Especialidades Médicas</p>
+                <h1 className="font-bold text-lg lg:text-xl">NeuroVida</h1>
+                <p className="text-xs text-gray-200">Centro Médico de Especialidades</p>
               </div>
             </motion.div>
 
+            {/* Redes Sociales */}
+            <div className="flex items-center space-x-3">
+              {redesSociales.map((red, index) => (
+                <motion.a
+                  key={index}
+                  href={red.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors duration-300"
+                >
+                  {red.icon}
+                </motion.a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Barra de Navegación - Estática */}
+      <div className="bg-azul-oscuro shadow-lg">
+        <div className="container-custom">
+          <div className="flex items-center justify-between">
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-8">
+            <nav className="hidden lg:flex items-center space-x-8 py-4">
               {menuItems.map((item, index) => (
                 <motion.div
                   key={item.name}
@@ -97,23 +116,6 @@ const Header = () => {
                 </motion.div>
               ))}
             </nav>
-
-            {/* Redes Sociales */}
-            <div className="hidden lg:flex items-center space-x-2 ml-6">
-              {redesSociales.map((red, index) => (
-                <motion.a
-                  key={index}
-                  href={red.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="w-7 h-7 bg-white rounded-full flex items-center justify-center text-azul-oscuro hover:bg-azul-claro transition-colors duration-300"
-                >
-                  {red.icon}
-                </motion.a>
-              ))}
-            </div>
 
             {/* Mobile Menu Button */}
             <motion.button

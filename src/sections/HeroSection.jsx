@@ -6,7 +6,7 @@ const HeroSection = () => {
   return (
     <>
       {/* Hero Section Principal */}
-      <section id="inicio" className="relative min-h-screen flex flex-col pt-24">
+      <section id="inicio" className="relative min-h-screen flex flex-col pt-32">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <div 
