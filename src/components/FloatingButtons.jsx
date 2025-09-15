@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MessageCircle, Calendar, Users, X, Menu } from 'lucide-react';
+import { MessageCircle, Calendar, Users, Phone, X, Menu } from 'lucide-react';
 
 const FloatingButtons = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -17,6 +17,12 @@ const FloatingButtons = () => {
       text: 'ESPECIALIDAD',
       href: '#especialidades',
       color: 'bg-azul-oscuro hover:bg-blue-900'
+    },
+    {
+      icon: <Phone size={24} />,
+      text: 'CONTACTO',
+      href: '#contacto',
+      color: 'bg-verde hover:bg-green-600'
     }
   ];
 
@@ -45,7 +51,7 @@ const FloatingButtons = () => {
         transition={{ duration: 0.5, delay: 1.2 }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className="fixed right-6 top-1/2 transform -translate-y-1/2 z-50 bg-azul-oscuro hover:bg-blue-900 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+        className="fixed right-6 top-1/2 transform -translate-y-1/2 z-30 bg-azul-oscuro hover:bg-blue-900 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
       >
         {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
       </motion.button>
