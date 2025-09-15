@@ -24,34 +24,79 @@ const InfoBlocksSection = () => {
   ];
 
   return (
-    <section className="relative bg-white py-16">
-      {/* Triángulo decorativo */}
-      <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-        <div className="w-0 h-0 border-l-4 border-r-4 border-b-4 border-l-transparent border-r-transparent border-b-green-500"></div>
+    <section className="relative py-20 overflow-hidden">
+      {/* Fondo con imagen */}
+      <div className="absolute inset-0 z-0">
+        <div 
+          className="w-full h-full bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`
+          }}
+        ></div>
+        <div className="w-full h-full bg-gradient-to-br from-teal-600/40 to-blue-800/40"></div>
       </div>
-      
-      <div className="container-custom">
-        <div className="grid md:grid-cols-3 gap-8">
-          {infoBlocks.map((block, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 + index * 0.1 }}
-              className="bg-teal-700 text-white p-8 rounded-lg"
-            >
-              <h3 className="text-xl font-bold mb-4">{block.title}</h3>
-              <p className="text-gray-200 mb-6 leading-relaxed">{block.description}</p>
-              <motion.a
-                href={block.href}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-block border-2 border-white text-white font-semibold px-6 py-3 rounded-lg hover:bg-white hover:text-teal-700 transition-all duration-300"
+
+      {/* Contenido Principal */}
+      <div className="relative z-10 container-custom">
+        <div className="text-center text-white max-w-6xl mx-auto px-4">
+          {/* Título Principal */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-8"
+          >
+            CENTRO DE ESPECIALIDADES MÉDICAS
+          </motion.h1>
+
+          {/* Logo del árbol */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex justify-center mb-12"
+          >
+            <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center shadow-2xl">
+              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="text-azul-oscuro">
+                  <path d="M12 2L8 8H16L12 2Z" fill="currentColor"/>
+                  <path d="M8 8L6 12H18L16 8H8Z" fill="currentColor"/>
+                  <path d="M6 12L4 16H20L18 12H6Z" fill="currentColor"/>
+                  <path d="M4 16L2 20H22L20 16H4Z" fill="currentColor"/>
+                  <circle cx="12" cy="6" r="2" fill="#e53e3e"/>
+                </svg>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Tarjetas de Información */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto"
+          >
+            {infoBlocks.map((block, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.02 }}
+                className="bg-azul-oscuro text-white p-6 rounded-lg"
               >
-                {block.buttonText}
-              </motion.a>
-            </motion.div>
-          ))}
+                <h3 className="text-lg font-bold mb-3">{block.title}</h3>
+                <p className="text-gray-200 mb-4 leading-relaxed text-sm">
+                  {block.description}
+                </p>
+                <motion.a
+                  href={block.href}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-block border-2 border-white text-white font-semibold px-4 py-2 rounded-lg hover:bg-white hover:text-azul-oscuro transition-all duration-300 text-sm"
+                >
+                  {block.buttonText}
+                </motion.a>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>

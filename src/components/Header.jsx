@@ -1,19 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X, ChevronDown, Instagram, Facebook, Twitter, Linkedin } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const menuItems = [
     { name: 'Inicio', href: '#inicio' },
@@ -32,13 +22,8 @@ const Header = () => {
   ];
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="fixed w-full z-50"
-    >
-      {/* Barra Superior - Título y Redes Sociales */}
+    <header className="w-full">
+      {/* Barra Superior - Logo, Título y Redes Sociales */}
       <div className="bg-azul-oscuro/80 backdrop-blur-sm py-3">
         <div className="container-custom">
           <div className="flex items-center justify-between">
@@ -48,8 +33,8 @@ const Header = () => {
               className="flex items-center space-x-3"
             >
               {/* Logo con árbol */}
-              <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-azul-oscuro">
+              <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-azul-oscuro">
                   <path d="M12 2L8 8H16L12 2Z" fill="currentColor"/>
                   <path d="M8 8L6 12H18L16 8H8Z" fill="currentColor"/>
                   <path d="M6 12L4 16H20L18 12H6Z" fill="currentColor"/>
@@ -58,8 +43,8 @@ const Header = () => {
                 </svg>
               </div>
               <div className="text-white">
-                <h1 className="font-bold text-lg lg:text-xl">NeuroVida</h1>
-                <p className="text-xs text-gray-200">Centro Médico de Especialidades</p>
+                <h1 className="font-bold text-xl lg:text-2xl">NeuroVida</h1>
+                <p className="text-sm text-gray-200">Centro de Especialidades Médicas</p>
               </div>
             </motion.div>
 
@@ -83,7 +68,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Barra de Navegación - Estática */}
+      {/* Barra de Navegación */}
       <div className="bg-azul-oscuro shadow-lg">
         <div className="container-custom">
           <div className="flex items-center justify-between">
@@ -154,7 +139,7 @@ const Header = () => {
           ))}
         </div>
       </motion.div>
-    </motion.header>
+    </header>
   );
 };
 

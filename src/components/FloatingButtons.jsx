@@ -1,9 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { MessageCircle, Calendar, Users, Phone, X, Menu } from 'lucide-react';
 
 const FloatingButtons = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const timeoutRef = useRef(null);
+
+  const handleActionClick = () => {
+    setIsSidebarOpen(false);
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+  };
+
+  const handleToggleClick = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+  };
+
+  // Timer para cerrar automáticamente el menú después de 5 segundos
+  useEffect(() => {
+    if (isSidebarOpen) {
+      timeoutRef.current = setTimeout(() => {
+        setIsSidebarOpen(false);
+      }, 5000); // 5 segundos
+    }
+
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, [isSidebarOpen]);
 
   const quickActions = [
     {
@@ -45,7 +75,7 @@ const FloatingButtons = () => {
 
       {/* Toggle Button para mostrar/ocultar sidebar */}
       <motion.button
-        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        onClick={handleToggleClick}
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.5, delay: 1.2 }}
@@ -64,12 +94,15 @@ const FloatingButtons = () => {
           opacity: isSidebarOpen ? 1 : 0 
         }}
         transition={{ duration: 0.3 }}
-        className="fixed right-0 top-1/2 transform -translate-y-1/2 z-40 space-y-2"
+        className={`fixed right-0 top-1/2 transform -translate-y-1/2 z-40 space-y-2 ${
+          isSidebarOpen ? 'pointer-events-auto' : 'pointer-events-none'
+        }`}
       >
         {quickActions.map((action, index) => (
           <motion.a
             key={index}
             href={action.href}
+            onClick={handleActionClick}
             whileHover={{ x: -5 }}
             whileTap={{ scale: 0.95 }}
             className={`${action.color} text-white p-4 rounded-l-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-3 min-w-[120px]`}

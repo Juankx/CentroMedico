@@ -1,53 +1,67 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const HeroSection = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Array de imágenes placeholder para el carrusel
+  const carouselImages = [
+    'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+    'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+    'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+    'https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+    'https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'
+  ];
+
+  // Cambiar imagen automáticamente cada 4 segundos
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => 
+        prevIndex === carouselImages.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [carouselImages.length]);
 
   return (
-    <>
-      {/* Hero Section Principal */}
-      <section id="inicio" className="relative min-h-screen flex flex-col pt-32">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <div 
-            className="w-full h-full bg-cover bg-center bg-no-repeat"
+    <section id="inicio" className="relative min-h-screen overflow-hidden">
+      {/* Carrusel de Imágenes de Fondo */}
+      <div className="absolute inset-0 z-0">
+        {carouselImages.map((image, index) => (
+          <motion.div
+            key={index}
+            className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`
+              backgroundImage: `url('${image}')`
             }}
-          ></div>
-          <div className="w-full h-full bg-gradient-to-br from-teal-600/85 to-blue-800/85"></div>
-        </div>
+            initial={{ opacity: 0 }}
+            animate={{ 
+              opacity: index === currentImageIndex ? 1 : 0 
+            }}
+            transition={{ duration: 1, ease: "easeInOut" }}
+          />
+        ))}
+        {/* Overlay con gradiente */}
+        <div className="absolute inset-0 bg-gradient-to-br from-teal-600/40 to-blue-800/40"></div>
+      </div>
 
-        {/* Título Principal */}
-        <div className="relative z-10 flex-1 flex items-center justify-center py-20">
-          <div className="text-center text-white max-w-6xl mx-auto px-4">
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight mb-12"
-            >
-              CENTRO DE ESPECIALIDADES MÉDICAS
-            </motion.h1>
-            
-            {/* Placeholder simple */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex justify-center mb-12"
-            >
-              <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center shadow-2xl">
-                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-                  <span className="text-azul-oscuro font-bold text-2xl">NV</span>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
-    </>
+      {/* Indicadores del carrusel */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 flex space-x-2">
+        {carouselImages.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentImageIndex(index)}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              index === currentImageIndex 
+                ? 'bg-white scale-125' 
+                : 'bg-white/50 hover:bg-white/75'
+            }`}
+          />
+        ))}
+      </div>
+    </section>
   );
 };
 
